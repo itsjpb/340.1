@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">jason\'s app</string>
-    <string name="i_am_jason_beutler_welcome_to_my_app">i am jason beutler, welcome to my app</string>
-    <string name="i_have_a_stinky_cat_named_athena">i have a stinky cat named athena</string>
-    <string name="this_is_the_aforementioned_athena">(this is the aforementioned athena)</string>
+    <string name="loginText">enter login info</string>
+    <string name="loginButtonText">log in</string>
+    <string name="buyText">buy</string>
+    <string name="sellText">sell</string>
+    <string name="tradeText">trade</string>
+    <string name="giveText">give</string>
+
+
+
 </resources>
