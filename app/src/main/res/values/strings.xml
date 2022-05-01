@@ -2,11 +2,9 @@
     <string name="app_name">jason\'s app</string>
     <string name="loginText">enter login info</string>
     <string name="loginButtonText">log in</string>
-    <string name="buyText">buy</string>
-    <string name="sellText">sell</string>
-    <string name="tradeText">trade</string>
-    <string name="giveText">give</string>
-
-
-
+    <string name="mainb1">movies</string>
+    <string name="mainb2">tv</string>
+    <string name="tradeText">books</string>
+    <string name="giveText">albums</string>
+    <string name="title_activity_movies">moviesActivity</string>
 </resources>
