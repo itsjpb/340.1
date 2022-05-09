@@ -36,7 +36,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         tradeButton.setOnClickListener {
-            Toast.makeText(this, "books", Toast.LENGTH_LONG).show()
+            val intent = Intent(this, MapsActivity::class.java)
+            startActivity(intent)
         }
 
         giveButton.setOnClickListener {

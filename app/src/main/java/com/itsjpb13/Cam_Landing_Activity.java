@@ -55,7 +55,6 @@ public class Cam_Landing_Activity extends AppCompatActivity {
                 myConnection.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
 
 
-
             RequestQueue myQ = Volley.newRequestQueue(this);
         JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, dataUrl, null, response -> {
                     try {
