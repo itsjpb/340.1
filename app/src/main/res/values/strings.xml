@@ -3,7 +3,7 @@
     <string name="loginText">enter login info</string>
     <string name="loginButtonText">log in</string>
     <string name="mainb1">movies</string>
-    <string name="mainb2">tv</string>
+    <string name="mainb2">live</string>
     <string name="tradeText">books</string>
     <string name="giveText">albums</string>
     <string name="title_activity_movies">moviesActivity</string>

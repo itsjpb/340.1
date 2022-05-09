@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+
 import androidx.appcompat.widget.Toolbar
 
 
@@ -30,7 +31,8 @@ class MainActivity : AppCompatActivity() {
     }
 
         sellButton.setOnClickListener {
-            Toast.makeText(this, "tv", Toast.LENGTH_LONG).show()
+            val intent = Intent(this, Cam_Landing_Activity::class.java)
+            startActivity(intent)
         }
 
         tradeButton.setOnClickListener {

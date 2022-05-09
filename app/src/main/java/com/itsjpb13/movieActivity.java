@@ -64,7 +64,7 @@ public class movieActivity extends AppCompatActivity {
             myCard.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                         detail(position);
+                    detail(position);
                 }
             });
             movieTitle.setText(values[position][0]);
@@ -72,5 +72,5 @@ public class movieActivity extends AppCompatActivity {
 
             return myCard;
         }
-}
+    }
 }
