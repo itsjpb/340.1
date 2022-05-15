@@ -8,4 +8,5 @@
     <string name="giveText">albums</string>
     <string name="title_activity_movies">moviesActivity</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="title_activity_cam_map">CamMap</string>
 </resources>

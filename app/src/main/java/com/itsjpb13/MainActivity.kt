@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         tradeButton.setOnClickListener {
-            val intent = Intent(this, MapsActivity::class.java)
+            val intent = Intent(this, CamMap::class.java)
             startActivity(intent)
         }
 

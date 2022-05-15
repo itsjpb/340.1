@@ -19,4 +19,24 @@ public class Cam{
         }
 
     }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public double[] getCoordinates() {
+        return coordinates;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public String getType() {
+        return type;
+    }
 }
