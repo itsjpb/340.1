@@ -28,6 +28,10 @@ public class Cam{
         return coordinates;
     }
 
+    public double getLat() {return coordinates[0];}
+
+    public double getLong() {return coordinates[1];}
+
     public String getDesc() {
         return desc;
     }
