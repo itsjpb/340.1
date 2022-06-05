@@ -85,7 +85,6 @@ public class CamMap extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String dataUrl = "https://web6.seattle.gov/Travelers/api/Map/Data?zoomId=13&type=2";
-        fillList(camList);
         // [START_EXCLUDE silent]
         // [START maps_current_place_on_create_save_instance_state]
         // Retrieve location and camera position from saved instance state.
@@ -136,15 +135,15 @@ public class CamMap extends AppCompatActivity
     @Override
     public void onMapReady(GoogleMap map) {
         this.map = map;
-        showCameraMarkers(camList);
+        fillList();
+
         // Prompt the user for permission.
         getLocationPermission();
         // [END_EXCLUDE]
 
 
         // Turn on the My Location layer and the related control on the map.
-        getDeviceLocation();
-        updateLocationUI();
+
 
 
         // Get the current location of the device and set the position of the map.
@@ -187,13 +186,22 @@ public class CamMap extends AppCompatActivity
                             map.moveCamera(CameraUpdateFactory
                                     .newLatLngZoom(defaultLocation, DEFAULT_ZOOM));
                             map.addMarker(new MarkerOptions().position(new LatLng(defaultLocation.latitude,
-                                            defaultLocation.longitude)).title("Your Location")
+                                            defaultLocation.longitude)).title("Pike Place Market")
                                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
                             map.getUiSettings().setMyLocationButtonEnabled(false);
 
                         }
                     }
                 });
+
+            } else {
+
+                map.moveCamera(CameraUpdateFactory
+                        .newLatLngZoom(defaultLocation, DEFAULT_ZOOM));
+                map.addMarker(new MarkerOptions().position(new LatLng(defaultLocation.latitude,
+                                defaultLocation.longitude)).title("Pike Place Market")
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                map.getUiSettings().setMyLocationButtonEnabled(false);
 
             }
         } catch (SecurityException e)  {
@@ -216,6 +224,8 @@ public class CamMap extends AppCompatActivity
                 android.Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
             locationPermissionGranted = true;
+            updateLocationUI();
+
         } else {
             ActivityCompat.requestPermissions(this,
                     new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
@@ -254,18 +264,19 @@ public class CamMap extends AppCompatActivity
             if (locationPermissionGranted) {
                 map.setMyLocationEnabled(true);
                 map.getUiSettings().setMyLocationButtonEnabled(true);
+                getDeviceLocation();
             } else {
                 map.setMyLocationEnabled(false);
                 map.getUiSettings().setMyLocationButtonEnabled(false);
-                lastKnownLocation = null;
-                getLocationPermission();
+                getDeviceLocation();
+
             }
         } catch (SecurityException e)  {
             Log.e("Exception: %s", e.getMessage());
         }
     }
 
-    private ArrayList<Cam> fillList(ArrayList<Cam> camsList) {
+    private void fillList() {
         RequestQueue myQ = Volley.newRequestQueue(this);
         JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, dataUrl, null, response -> {
             try {
@@ -282,24 +293,25 @@ public class CamMap extends AppCompatActivity
                         String thisDescription = thisCam.getString("Description");
                         String thistype = thisCam.getString("Type");
 
-                        camsList.add( new Cam(thisCoords, thisDescription, thisUrl, thistype));
-                        Log.d(TAG, "fillList: " + String.valueOf(camsList.size()));
+                        camList.add( new Cam(thisCoords, thisDescription, thisUrl, thistype));
+                        Log.d(TAG, "fillList: " + String.valueOf(camList.size()));
 
                     }
                 }
+                showCameraMarkers();
             }
             catch (JSONException e) {
                 e.printStackTrace();
             }
         } , error -> Log.d("jsonError", "error: " + error.getMessage()));
         myQ.add(objectRequest);
-        return camsList;
+
     }
 
-    private void showCameraMarkers(@NonNull ArrayList<Cam> cameraList) {
+    private void showCameraMarkers() {
         Log.d("LOCATION", "Show camera markers");
-        Log.d("ADD", String.valueOf(cameraList.size()));
-        for (Cam camera : cameraList) {
+        Log.d("ADD", String.valueOf(camList.size()));
+        for (Cam camera : camList) {
             map.addMarker( new MarkerOptions()
                     .position(new LatLng(camera.getLat(), camera.getLong()))
                     .title(camera.getDesc())
